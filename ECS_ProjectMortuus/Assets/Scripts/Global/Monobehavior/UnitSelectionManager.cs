@@ -1,6 +1,7 @@
 using System;
 using Unity.Collections;
 using Unity.Entities;
+using Unity.Mathematics;
 using Unity.Physics;
 using Unity.Transforms;
 using UnityEngine;
@@ -159,6 +160,67 @@ public class UnitSelectionManager : MonoBehaviour
             
 
         }
+
+
+        if (Input.GetMouseButtonDown(1))
+        {
+
+            Vector3 mousePosition = MouseManager.Instance.GetMousePosition();
+
+            EntityManager entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
+            EntityQuery entityQuery = new EntityQueryBuilder(Allocator.Temp).WithAll<UnitMover,Selected>().Build(entityManager);
+
+            NativeArray<Entity> entityArray = entityQuery.ToEntityArray(Allocator.Temp);
+            NativeArray<UnitMover> unitMoverArray = entityQuery.ToComponentDataArray<UnitMover>(Allocator.Temp);
+
+
+            NativeArray<float3> movePositionArray = GenerateMovePositionArray(entityArray.Length, mousePosition);
+
+
+            for (int i = 0; i < entityArray.Length; i++)
+            {
+                UnitMover unitMover = unitMoverArray[i];
+
+                unitMover.targetPosition = movePositionArray[i];
+
+                //entityManager.SetComponentData(entityArray[i], unit);    
+
+                unitMoverArray[i] = unitMover;
+
+
+                entityManager.SetComponentEnabled<Selected>(entityArray[i], true);
+
+            }
+
+            entityQuery.CopyFromComponentDataArray(unitMoverArray);
+
+
+
+        }
+
+    }
+
+
+    public NativeArray<float3> GenerateMovePositionArray(int positionCount,float3 targetPosition)
+    {
+        NativeArray<float3> positionArray = new NativeArray<float3>(positionCount,Allocator.Temp);
+
+        if(positionCount == 0)
+        {
+            return positionArray;
+        }
+
+        for(int i=0;i<positionArray.Length; i++)
+        {
+            float angle = i * (2.0f * Mathf.PI / positionCount);
+
+
+            float3 position = new float3(math.cos(angle),0.0f,math.sin(angle)) * 5.0f + targetPosition; 
+
+            positionArray[i] = position;
+        }
+
+        return positionArray;
     }
 
 
