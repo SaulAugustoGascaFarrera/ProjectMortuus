@@ -42,7 +42,7 @@ partial struct HealthBarSystem : ISystem
 
             float normalizedHealth = (float)health.healthAmount / health.healthMax;
 
-            UnityEngine.Debug.Log(normalizedHealth);
+            //UnityEngine.Debug.Log(normalizedHealth);
 
             if(normalizedHealth == 1.0f)
             {

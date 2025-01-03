@@ -9,12 +9,13 @@ public class UnitAuthoring : MonoBehaviour
         {
             Entity entity = GetEntity(TransformUsageFlags.Dynamic);
 
-            AddComponent(entity, new Unit { });
+            AddComponent(entity, new Unit { timerMax = 1.2f });
         }
     }
 }
 
 public struct Unit : IComponentData
 {
-
+    public float timer;
+    public float timerMax;
 }
