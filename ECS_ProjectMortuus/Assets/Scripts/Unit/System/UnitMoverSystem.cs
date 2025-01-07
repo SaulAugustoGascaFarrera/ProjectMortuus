@@ -45,7 +45,7 @@ public partial struct UnitMoveJob : IJobEntity
 
         float reachedDistance = 2.0f;
 
-        if(math.length(moveDirection) > reachedDistance)
+        if(math.lengthsq(moveDirection) > reachedDistance)
         {
             moveDirection = math.normalize(moveDirection);
 

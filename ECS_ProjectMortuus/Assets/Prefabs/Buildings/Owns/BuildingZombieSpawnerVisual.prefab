@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 3825705891543578395}
   - component: {fileID: 5136938566198586108}
   - component: {fileID: 5747498447533390766}
+  - component: {fileID: 8832838135735954555}
   m_Layer: 0
   m_Name: BuildingZombieSpawnerVisual
   m_TagString: Untagged
@@ -143,6 +144,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timerMax: 5
+--- !u!114 &8832838135735954555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5109509136722962333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ffcfb03aad0bb64ab2bbe191fef1e20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitLocalTransform: {fileID: 1499689558363902821}
 --- !u!1 &5305438957302852632
 GameObject:
   m_ObjectHideFlags: 0

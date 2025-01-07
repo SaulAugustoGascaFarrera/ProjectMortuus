@@ -4,7 +4,7 @@ using UnityEngine;
 public class TargetAuthoring : MonoBehaviour
 {
 
-    public GameObject testTargetGameObject;
+    public GameObject targetGameObject;
 
    public class Baker : Baker<TargetAuthoring>
     {
@@ -14,7 +14,7 @@ public class TargetAuthoring : MonoBehaviour
 
             AddComponent(entity, new Target
             {
-                targetEntity = GetEntity(authoring.testTargetGameObject, TransformUsageFlags.Dynamic)
+                targetEntity = GetEntity(authoring.targetGameObject, TransformUsageFlags.Dynamic)
             });
         }
     }
