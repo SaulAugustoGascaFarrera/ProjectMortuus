@@ -46,7 +46,9 @@ GameObject:
   - component: {fileID: 5136938566198586108}
   - component: {fileID: 5747498447533390766}
   - component: {fileID: 8832838135735954555}
-  m_Layer: 0
+  - component: {fileID: 4573559171083144940}
+  - component: {fileID: 5861977747239226301}
+  m_Layer: 7
   m_Name: BuildingZombieSpawnerVisual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,8 +98,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a079a0615b402146b9d3962b500b36b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthAmount: 200
-  healthMax: 200
+  healthAmount: 1000
+  healthMax: 1000
 --- !u!114 &3825705891543578395
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -161,6 +163,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitLocalTransform: {fileID: 1499689558363902821}
+--- !u!114 &4573559171083144940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5109509136722962333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb4ad94b3c93b604cb58b28c31ae01a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  faction: 1
+--- !u!114 &5861977747239226301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5109509136722962333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a5e82dbb86584f49b0d41ae46af307f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timerMax: 0
 --- !u!1 &5305438957302852632
 GameObject:
   m_ObjectHideFlags: 0

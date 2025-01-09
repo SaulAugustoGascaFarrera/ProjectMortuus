@@ -5,6 +5,7 @@ public class FindTargetAuthoring : MonoBehaviour
 {
     public float timerMax;
     public float range;
+    public FactionType targetFaction;
     public class Baker : Baker<FindTargetAuthoring>
     {
         public override void Bake(FindTargetAuthoring authoring)
@@ -14,7 +15,8 @@ public class FindTargetAuthoring : MonoBehaviour
             AddComponent(entity, new FindTarget
             {
                 timerMax = authoring.timerMax,
-                range = authoring.range
+                range = authoring.range,
+                targetFaction = authoring.targetFaction
             });
         }
 
@@ -26,4 +28,5 @@ public struct FindTarget : IComponentData
     public float timer;
     public float timerMax;
     public float range;
+    public FactionType targetFaction;
 }

@@ -59,6 +59,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Zombie
       objectReference: {fileID: 0}
+    - target: {fileID: 6373151595347388899, guid: 7ccf00d4996acf042a701b3b2ef27c64, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 6524009639180628857, guid: 7ccf00d4996acf042a701b3b2ef27c64, type: 3}
       propertyPath: range
       value: 20
@@ -126,6 +130,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6373151595347388899, guid: 7ccf00d4996acf042a701b3b2ef27c64, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6201742321835126467}
+    - targetCorrespondingSourceObject: {fileID: 6373151595347388899, guid: 7ccf00d4996acf042a701b3b2ef27c64, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4828037509467105336}
   m_SourcePrefab: {fileID: 100100000, guid: 7ccf00d4996acf042a701b3b2ef27c64, type: 3}
 --- !u!4 &1247375675802471433 stripped
 Transform:
@@ -236,3 +243,16 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1.4, z: 0}
+--- !u!114 &4828037509467105336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2455237175663900987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb4ad94b3c93b604cb58b28c31ae01a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  faction: 1
