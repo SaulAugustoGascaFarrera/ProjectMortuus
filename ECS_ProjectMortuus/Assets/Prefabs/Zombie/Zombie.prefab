@@ -133,6 +133,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6373151595347388899, guid: 7ccf00d4996acf042a701b3b2ef27c64, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4828037509467105336}
+    - targetCorrespondingSourceObject: {fileID: 6373151595347388899, guid: 7ccf00d4996acf042a701b3b2ef27c64, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4409787432131934623}
   m_SourcePrefab: {fileID: 100100000, guid: 7ccf00d4996acf042a701b3b2ef27c64, type: 3}
 --- !u!4 &1247375675802471433 stripped
 Transform:
@@ -256,3 +259,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   faction: 1
+--- !u!114 &4409787432131934623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2455237175663900987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b45fb34ed31d4b84a9f4c5ff25cb9b2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timerMax: 0.2
+  damageAmount: 15
+  distanceToAttack: 2

@@ -13,9 +13,11 @@ partial struct FindTargetSystem : ISystem
     {
         PhysicsWorldSingleton physicsWorldSingleton = SystemAPI.GetSingleton<PhysicsWorldSingleton>();  
 
+        CollisionWorld collisionWorld = physicsWorldSingleton.CollisionWorld;
+
         NativeList<DistanceHit> distanceHitsList = new NativeList<DistanceHit>(Allocator.Temp);
 
-        
+       
 
         foreach((RefRW<LocalTransform> localTransform,RefRW<Target> target,RefRW<FindTarget> findTarget) in SystemAPI.Query< RefRW<LocalTransform>,RefRW<Target>,RefRW<FindTarget>>())
         {
@@ -31,7 +33,7 @@ partial struct FindTargetSystem : ISystem
                 GroupIndex = 0
             }; 
 
-            if(physicsWorldSingleton.OverlapSphere(localTransform.ValueRO.Position,findTarget.ValueRO.range,ref distanceHitsList, collisionFilter))
+            if(collisionWorld.OverlapSphere(localTransform.ValueRO.Position,findTarget.ValueRO.range,ref distanceHitsList, collisionFilter))
             {
                foreach(DistanceHit distanceHit in distanceHitsList)
                {
