@@ -55,6 +55,10 @@ PrefabInstance:
       propertyPath: faction
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5544908847279012731, guid: 7ccf00d4996acf042a701b3b2ef27c64, type: 3}
+      propertyPath: movementSpeed
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 6373151595347388899, guid: 7ccf00d4996acf042a701b3b2ef27c64, type: 3}
       propertyPath: m_Name
       value: Zombie
@@ -65,7 +69,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6524009639180628857, guid: 7ccf00d4996acf042a701b3b2ef27c64, type: 3}
       propertyPath: range
-      value: 20
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 7722735746410994897, guid: 7ccf00d4996acf042a701b3b2ef27c64, type: 3}
       propertyPath: m_LocalPosition.x
@@ -272,5 +276,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timerMax: 0.2
-  damageAmount: 15
+  damageAmount: 1
   distanceToAttack: 2

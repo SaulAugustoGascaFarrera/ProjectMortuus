@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 6234721531172287463}
   - component: {fileID: 6524009639180628857}
   - component: {fileID: 6022068067319214569}
+  - component: {fileID: 3047525660836911681}
   m_Layer: 0
   m_Name: BaseUnit
   m_TagString: Untagged
@@ -67,6 +68,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb4ad94b3c93b604cb58b28c31ae01a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  faction: 0
 --- !u!114 &1842151768631793262
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -133,6 +135,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timerMax: 0.2
   range: 17
+  targetFaction: 0
 --- !u!114 &6022068067319214569
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -145,6 +148,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b608f80a9603164185b75c982c73bd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3047525660836911681
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6373151595347388899}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba4c8ef00a28d5847a29ce5789daa9c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  loseTargetDistance: 20
 --- !u!1 &7300355843461843591
 GameObject:
   m_ObjectHideFlags: 0
