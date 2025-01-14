@@ -20,9 +20,24 @@ partial struct FindTargetSystem : ISystem
 
        
 
-        foreach((RefRW<LocalTransform> localTransform,RefRW<Target> target,RefRW<FindTarget> findTarget) in SystemAPI.Query< RefRW<LocalTransform>,RefRW<Target>,RefRW<FindTarget>>())
+        foreach((RefRW<LocalTransform> localTransform,RefRW<Target> target,RefRW<FindTarget> findTarget,RefRO<TargetOveride> targetOverride) in SystemAPI.Query< RefRW<LocalTransform>,RefRW<Target>,RefRW<FindTarget>, RefRO<TargetOveride>>())
         {
 
+            findTarget.ValueRW.timer -= SystemAPI.Time.DeltaTime;
+
+            if(findTarget.ValueRO.timer > 0.0f)
+            {
+                continue;
+            }
+
+            findTarget.ValueRW.timer = findTarget.ValueRO.timerMax;
+
+
+            if(targetOverride.ValueRO.targetEntity != Entity.Null)
+            {
+                target.ValueRW.targetEntity = targetOverride.ValueRO.targetEntity;
+                continue;
+            }
 
             distanceHitsList.Clear();
 

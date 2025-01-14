@@ -10,9 +10,14 @@ partial struct LoseTargetSystem : ISystem
     [BurstCompile]
     public void OnUpdate(ref SystemState state)
     {
-        foreach((RefRO<LocalTransform> localTransform,RefRO<LoseTarget> loseTarget,RefRW<Target> target) in SystemAPI.Query<RefRO<LocalTransform>,RefRO<LoseTarget>,RefRW<Target>>())
+        foreach((RefRO<LocalTransform> localTransform,RefRO<LoseTarget> loseTarget,RefRW<Target> target,RefRO<TargetOveride> targetOverride) in SystemAPI.Query<RefRO<LocalTransform>,RefRO<LoseTarget>,RefRW<Target>, RefRO<TargetOveride>>())
         {
             if(!SystemAPI.Exists(target.ValueRO.targetEntity))
+            {
+                continue;
+            }
+
+            if (SystemAPI.Exists(targetOverride.ValueRO.targetEntity))
             {
                 continue;
             }

@@ -12,10 +12,26 @@ partial struct ResetTargetSystem : ISystem
     {
         foreach((RefRO<LocalTransform> localTransform,RefRW<Target> target) in SystemAPI.Query<RefRO<LocalTransform>,RefRW<Target>>())
         {
-            if(!SystemAPI.Exists(target.ValueRO.targetEntity) || !SystemAPI.HasComponent<LocalTransform>(target.ValueRO.targetEntity))
+            if(SystemAPI.Exists(target.ValueRO.targetEntity))
             {
-                target.ValueRW.targetEntity = Entity.Null;
+                if (!SystemAPI.Exists(target.ValueRO.targetEntity) || !SystemAPI.HasComponent<LocalTransform>(target.ValueRO.targetEntity))
+                {
+                    target.ValueRW.targetEntity = Entity.Null;
+                }
             }
+           
+        }
+
+        foreach (RefRW<TargetOveride> targetOverride in SystemAPI.Query<RefRW<TargetOveride>>())
+        {
+            if (SystemAPI.Exists(targetOverride.ValueRO.targetEntity))
+            {
+                if (!SystemAPI.Exists(targetOverride.ValueRO.targetEntity) || !SystemAPI.HasComponent<LocalTransform>(targetOverride.ValueRO.targetEntity))
+                {
+                    targetOverride.ValueRW.targetEntity = Entity.Null;
+                }
+            }
+
         }
     }
 
