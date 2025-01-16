@@ -534,8 +534,29 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2777885071436039972, guid: fd99aa283a04ad548bec0b9ddfbef2f1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1073327611}
   m_SourcePrefab: {fileID: 100100000, guid: fd99aa283a04ad548bec0b9ddfbef2f1, type: 3}
+--- !u!1 &1073327610 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2777885071436039972, guid: fd99aa283a04ad548bec0b9ddfbef2f1, type: 3}
+  m_PrefabInstance: {fileID: 1073327609}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1073327611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1073327610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7746b1d70682664b90ea43fb525a279, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soldierIdle: {fileID: 11400000, guid: 9031c57c1ef4dff44aa04b4b3dc81edc, type: 2}
 --- !u!1001 &1187209667
 PrefabInstance:
   m_ObjectHideFlags: 0
