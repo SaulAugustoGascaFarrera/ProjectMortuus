@@ -556,7 +556,52 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7746b1d70682664b90ea43fb525a279, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1139140301
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1139140302}
+  - component: {fileID: 1139140303}
+  m_Layer: 0
+  m_Name: AnimationDataHolder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1139140302
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1139140301}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1139140303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1139140301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ec574c1e56b34d408f03db2b11721b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   soldierIdle: {fileID: 11400000, guid: 9031c57c1ef4dff44aa04b4b3dc81edc, type: 2}
+  soldierWalk: {fileID: 11400000, guid: ff9d88bbb3d19bb499697ac2fee61761, type: 2}
 --- !u!1001 &1187209667
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -968,6 +1013,7 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 1139140302}
   - {fileID: 1419824117}
   - {fileID: 716527889}
   - {fileID: 686630545}

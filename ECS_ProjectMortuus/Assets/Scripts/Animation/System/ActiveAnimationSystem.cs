@@ -1,36 +1,52 @@
 using Unity.Burst;
 using Unity.Entities;
 using Unity.Rendering;
+using UnityEngine;
 
 partial struct ActiveAnimationSystem : ISystem
 {
-   
+
+    [BurstCompile]
+    public void OnCreate(ref SystemState state)
+    {
+        state.RequireForUpdate<AnimationDataHolder>();
+    }
+
 
     [BurstCompile]
     public void OnUpdate(ref SystemState state)
     {
+
+        AnimationDataHolder animationDataHolder = SystemAPI.GetSingleton<AnimationDataHolder>();
+
         foreach((RefRW<ActiveAnimation> activeAnimation,RefRW<MaterialMeshInfo> meshMaterialInfo) in SystemAPI.Query<RefRW<ActiveAnimation>,RefRW<MaterialMeshInfo>>())
         {
+
+            if(!activeAnimation.ValueRO.animationDataBlobAssetReference.IsCreated)
+            {
+                activeAnimation.ValueRW.animationDataBlobAssetReference = animationDataHolder.soldierIdle;
+            }
+
+            if(Input.GetKeyDown(KeyCode.T))
+            {
+                activeAnimation.ValueRW.animationDataBlobAssetReference = animationDataHolder.soldierIdle;
+            }
+
+            if (Input.GetKeyDown(KeyCode.Y))
+            {
+                activeAnimation.ValueRW.animationDataBlobAssetReference = animationDataHolder.soldierWalk;
+            }
+
             activeAnimation.ValueRW.frameTimer += SystemAPI.Time.DeltaTime;
 
-            if(activeAnimation.ValueRW.frameTimer > activeAnimation.ValueRO.frameTimerMax)
+            if(activeAnimation.ValueRW.frameTimer > activeAnimation.ValueRO.animationDataBlobAssetReference.Value.frameTimerMax)
             {
-                activeAnimation.ValueRW.frameTimer -= activeAnimation.ValueRO.frameTimerMax;
+                activeAnimation.ValueRW.frameTimer -= activeAnimation.ValueRO.animationDataBlobAssetReference.Value.frameTimerMax;
 
-                activeAnimation.ValueRW.frame = (activeAnimation.ValueRO.frame + 1) % activeAnimation.ValueRO.frameMax;
+                activeAnimation.ValueRW.frame = (activeAnimation.ValueRO.frame + 1) % activeAnimation.ValueRO.animationDataBlobAssetReference.Value.batchMeshIdBlobArray.Length;
 
 
-                switch(activeAnimation.ValueRW.frame)
-                {
-                    default:
-                    case 0:
-                        meshMaterialInfo.ValueRW.MeshID = activeAnimation.ValueRO.frame0;
-                        break;
-                    case 1:
-                        meshMaterialInfo.ValueRW.MeshID = activeAnimation.ValueRO.frame1;
-                        break;
-                    
-                }
+                meshMaterialInfo.ValueRW.MeshID = activeAnimation.ValueRO.animationDataBlobAssetReference.Value.batchMeshIdBlobArray[activeAnimation.ValueRO.frame];
             }
         }
     }

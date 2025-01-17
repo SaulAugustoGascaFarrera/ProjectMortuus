@@ -5,7 +5,7 @@ using UnityEngine.Rendering;
 
 public class ActiveAnimationAuthoring : MonoBehaviour
 {
-    public AnimationDataSO soldierIdle;
+    
 
     public class Baker : Baker<ActiveAnimationAuthoring>
     {
@@ -18,10 +18,7 @@ public class ActiveAnimationAuthoring : MonoBehaviour
 
             AddComponent(entity, new ActiveAnimation
             {
-                frame0 = entitiesGraphicsSystem.RegisterMesh(authoring.soldierIdle.meshArray[0]),
-                frame1 = entitiesGraphicsSystem.RegisterMesh(authoring.soldierIdle.meshArray[1]),
-                frameMax = authoring.soldierIdle.meshArray.Length,
-                frameTimerMax = authoring.soldierIdle.frameTimerMax,
+               
             });
 
         }
@@ -32,12 +29,9 @@ public class ActiveAnimationAuthoring : MonoBehaviour
 public struct ActiveAnimation : IComponentData
 {
     public int frame;
-    public int frameMax;
-
     public float frameTimer;
-    public float frameTimerMax;
+    public BlobAssetReference<AnimationData> animationDataBlobAssetReference;
 
-    public BatchMeshID frame0;
-    public BatchMeshID frame1;
+    
     
 }
