@@ -113,7 +113,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7423981820305080132, guid: 7ccf00d4996acf042a701b3b2ef27c64, type: 3}
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 4478322736706851692, guid: 7ccf00d4996acf042a701b3b2ef27c64, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 7722735746410994897, guid: 7ccf00d4996acf042a701b3b2ef27c64, type: 3}
       insertIndex: -1
@@ -276,5 +277,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timerMax: 0.2
-  damageAmount: 1
+  damageAmount: 5
   distanceToAttack: 2

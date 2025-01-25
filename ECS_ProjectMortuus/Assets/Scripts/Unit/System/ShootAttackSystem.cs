@@ -49,32 +49,89 @@ partial struct ShootAttackSystem : ISystem
             localTransform.ValueRW.Rotation = math.slerp(localTransform.ValueRO.Rotation,quaternion.LookRotation(aimDirection,math.up()),unitMover.ValueRO.rotationSpeed * SystemAPI.Time.DeltaTime);
 
 
+            //shootAttack.ValueRW.timer -= SystemAPI.Time.DeltaTime;
+
+            //if (shootAttack.ValueRO.timer > 0.0f)
+            //{
+            //    continue;
+            //}
+
+            //shootAttack.ValueRW.timer = shootAttack.ValueRO.timerMax;
+
+            //RefRW<TargetOveride> enemyTargetOverride  = SystemAPI.GetComponentRW<TargetOveride>(target.ValueRO.targetEntity);
+
+            //if (enemyTargetOverride.ValueRO.targetEntity == Entity.Null)
+            //{
+            //    enemyTargetOverride.ValueRW.targetEntity = entity;
+            //}
+
+            //Entity bulletEntity = state.EntityManager.Instantiate(entitiesReferences.bulletPrefabEntity);
+            //float3 bulletSpawnPoint = localTransform.ValueRO.TransformPoint(shootAttack.ValueRO.bulletSpawnPointLocation);
+            //SystemAPI.SetComponent(bulletEntity,LocalTransform.FromPosition(bulletSpawnPoint));
+
+            //RefRW<Bullet> bullet = SystemAPI.GetComponentRW<Bullet>(bulletEntity);
+            //shootAttack.ValueRW.damageAmount = bullet.ValueRO.damageAmount;
+
+
+            //RefRW<Target> bulletTarget = SystemAPI.GetComponentRW<Target>(bulletEntity);
+            //bulletTarget.ValueRW.targetEntity = target.ValueRO.targetEntity;    
+
+        }
+
+
+        foreach((RefRO<Target> target,RefRW<LocalTransform> localTransform,RefRW<ShootAttack> shootAttack,Entity entity) in SystemAPI.Query<RefRO<Target>,RefRW<LocalTransform>, RefRW<ShootAttack>>().WithEntityAccess())
+        {
+            if(!SystemAPI.Exists(target.ValueRO.targetEntity))
+            {
+                continue;
+            }
+
+            LocalTransform targetLocation = SystemAPI.GetComponent<LocalTransform>(target.ValueRO.targetEntity);
+
+            if(math.distance(localTransform.ValueRO.Position,targetLocation.Position) > shootAttack.ValueRO.attackDistance)
+            {
+                //target too far
+                continue;
+            }
+
+            if(SystemAPI.HasComponent<MoveOverride>(entity) && SystemAPI.IsComponentEnabled<MoveOverride>(entity))
+            {
+                // Move override is active
+                continue;
+            }
+
             shootAttack.ValueRW.timer -= SystemAPI.Time.DeltaTime;
 
-            if (shootAttack.ValueRO.timer > 0.0f)
+            if(shootAttack.ValueRO.timer > 0.0f)
             {
                 continue;
             }
 
             shootAttack.ValueRW.timer = shootAttack.ValueRO.timerMax;
 
-            RefRW<TargetOveride> enemyTargetOverride  = SystemAPI.GetComponentRW<TargetOveride>(target.ValueRO.targetEntity);
 
-            if (enemyTargetOverride.ValueRO.targetEntity == Entity.Null)
+            if (SystemAPI.HasComponent<TargetOveride>(target.ValueRO.targetEntity))
             {
-                enemyTargetOverride.ValueRW.targetEntity = entity;
+                RefRW<TargetOveride> enemyTargetOverride = SystemAPI.GetComponentRW<TargetOveride>(target.ValueRO.targetEntity);
+                if (enemyTargetOverride.ValueRO.targetEntity == Entity.Null)
+                {
+                    enemyTargetOverride.ValueRW.targetEntity = entity;
+                }
             }
 
             Entity bulletEntity = state.EntityManager.Instantiate(entitiesReferences.bulletPrefabEntity);
             float3 bulletSpawnPoint = localTransform.ValueRO.TransformPoint(shootAttack.ValueRO.bulletSpawnPointLocation);
-            SystemAPI.SetComponent(bulletEntity,LocalTransform.FromPosition(bulletSpawnPoint));
+            SystemAPI.SetComponent(bulletEntity, LocalTransform.FromPosition(bulletSpawnPoint));
 
             RefRW<Bullet> bullet = SystemAPI.GetComponentRW<Bullet>(bulletEntity);
             shootAttack.ValueRW.damageAmount = bullet.ValueRO.damageAmount;
 
 
             RefRW<Target> bulletTarget = SystemAPI.GetComponentRW<Target>(bulletEntity);
-            bulletTarget.ValueRW.targetEntity = target.ValueRO.targetEntity;    
+            bulletTarget.ValueRW.targetEntity = target.ValueRO.targetEntity;
+
+            shootAttack.ValueRW.onShoot.isTriggered = true;
+            shootAttack.ValueRW.onShoot.shootFromPosition = bulletSpawnPoint;
 
         }
     }

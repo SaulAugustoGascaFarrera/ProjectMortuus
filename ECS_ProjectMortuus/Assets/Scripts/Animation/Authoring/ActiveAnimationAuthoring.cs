@@ -5,8 +5,8 @@ using UnityEngine.Rendering;
 
 public class ActiveAnimationAuthoring : MonoBehaviour
 {
-    
 
+    public AnimationDataSO.AnimationType nextAnimationType;
     public class Baker : Baker<ActiveAnimationAuthoring>
     {
         public override void Bake(ActiveAnimationAuthoring authoring)
@@ -18,7 +18,7 @@ public class ActiveAnimationAuthoring : MonoBehaviour
 
             AddComponent(entity, new ActiveAnimation
             {
-               
+               nextAnimationType = authoring.nextAnimationType,
             });
 
         }
@@ -33,6 +33,6 @@ public struct ActiveAnimation : IComponentData
     //public BlobAssetReference<AnimationData> animationDataBlobAssetReference;
     //public int activeAnimationIndex;
     public AnimationDataSO.AnimationType activeAnimationType;
-    
+    public AnimationDataSO.AnimationType nextAnimationType;
     
 }

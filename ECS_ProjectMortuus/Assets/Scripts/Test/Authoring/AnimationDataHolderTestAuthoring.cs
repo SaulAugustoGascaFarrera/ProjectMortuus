@@ -25,9 +25,7 @@ public class AnimationDataHolderTestAuthoring : MonoBehaviour
 
             ref BlobArray<AnimationDataTest> animationDataTestBlobArray = ref blobBuilder.ConstructRoot<BlobArray<AnimationDataTest>>();
 
-
-            BlobBuilderArray<AnimationDataTest> animationDataTestBlobBuilderArray = blobBuilder.Allocate(ref animationDataTestBlobArray, 2);
-
+            BlobBuilderArray<AnimationDataTest> animationDataTestBlobBuilderArray = blobBuilder.Allocate(ref animationDataTestBlobArray,2);
 
             animationDataTestBlobBuilderArray[0].frameTimerMax = authoring.soldierIdle.frameTimerMax;
             animationDataTestBlobBuilderArray[0].frameMax = authoring.soldierIdle.meshArray.Length;
@@ -35,20 +33,41 @@ public class AnimationDataHolderTestAuthoring : MonoBehaviour
 
             BlobBuilderArray<BatchMeshID> batchMeshIdBlobBuilderArray = blobBuilder.Allocate(ref animationDataTestBlobBuilderArray[0].batchMeshIdBlobArray, authoring.soldierIdle.meshArray.Length);
 
-
-            for(int i=0;i<batchMeshIdBlobBuilderArray.Length;i++)
+            for (int i=0;i< batchMeshIdBlobBuilderArray.Length;i++)
             {
                 Mesh mesh = authoring.soldierIdle.meshArray[i];
 
-                batchMeshIdBlobBuilderArray[i] = entitiesGraphicsSystem.RegisterMesh(mesh); 
+                batchMeshIdBlobBuilderArray[i] = entitiesGraphicsSystem.RegisterMesh(mesh);
             }
+
 
             animationDataHolderTest.animationDataTestBlobAssetArray = blobBuilder.CreateBlobAssetReference<BlobArray<AnimationDataTest>>(Allocator.Persistent);
 
-            blobBuilder.Dispose();
+            AddBlobAsset(ref animationDataHolderTest.animationDataTestBlobAssetArray, out Unity.Entities.Hash128 objectHash);
 
 
-            AddBlobAsset(ref animationDataHolderTest.animationDataTestBlobAssetArray,out Unity.Entities.Hash128 hash128);
+            //{
+            //    BlobBuilder blobBuilder1 = new BlobBuilder(Allocator.Temp);
+
+            //    ref AnimationDataTest animationDataTest = ref blobBuilder1.ConstructRoot<AnimationDataTest>();
+
+
+            //   BlobBuilderArray<BatchMeshID> batchMeshIdBlobBuilderArray1  = blobBuilder.Allocate(ref animationDataTest.batchMeshIdBlobArray, authoring.soldierIdle.meshArray.Length);
+
+
+            //    for(int i=0;i<batchMeshIdBlobBuilderArray1.Length;i++)
+            //    {
+            //        Mesh mesh = authoring.soldierIdle.meshArray[i];
+
+            //        batchMeshIdBlobBuilderArray1[i] = entitiesGraphicsSystem.RegisterMesh(mesh);
+            //    }
+
+            //    animationDataHolderTest.soldierIdle = blobBuilder.CreateBlobAssetReference<AnimationDataTest>(Allocator.Persistent);
+
+            //    AddBlobAsset(ref animationDataHolderTest.soldierIdle, out Unity.Entities.Hash128 objectHash1);
+
+            //}
+
 
             AddComponent(entity, animationDataHolderTest);
         }
@@ -58,7 +77,7 @@ public class AnimationDataHolderTestAuthoring : MonoBehaviour
 
 public struct AnimationDataHolderTest : IComponentData
 {
-    //public BlobAssetReference<AnimationDataTest> soldierIdle;
+    public BlobAssetReference<AnimationDataTest> soldierIdle;
     //public BlobAssetReference<AnimationDataTest> soldierWalk;
 
     public BlobAssetReference<BlobArray<AnimationDataTest>> animationDataTestBlobAssetArray;
